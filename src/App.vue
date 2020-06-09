@@ -1,28 +1,38 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <header>
+      <h1>My Awesome TodoList</h1>
+    </header>
+    <AddForm></AddForm>
+    <TaskItem></TaskItem>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import AddForm from "./components/AddForm.vue";
+import TaskItem from "./components/TaskItem.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
+    AddForm,
+    TaskItem
   }
-}
+};
 </script>
 
-<style>
+<style lang="scss">
+@import "~@/assets/scss/all.scss";
+body {
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 100;
+}
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 400;
+  box-shadow: $shadow;
 }
 </style>
