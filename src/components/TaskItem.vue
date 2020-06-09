@@ -1,11 +1,19 @@
 <template>
-  <div class="task-item"></div>
+  <div class="task-item__wrapper">
+    <div class="task-item" v-for="task in tasks" :key="task.id">
+      <div class="task-item__checkbox-wrp">
+        <input type="checkbox" class="task-item__checkbox" />
+      </div>
+      <div class="task-item__id">{{ task.id }}</div>
+      <div class="task-item__title">{{ task.taskTitle }}</div>
+      <div class="task-item__description">{{ task.taskDescription }}</div>
+    </div>
+  </div>
 </template>
 
 <script>
 export default {
-  name: "TaskItem",
-  props: {}
+  props: ["tasks"]
 };
 </script>
 

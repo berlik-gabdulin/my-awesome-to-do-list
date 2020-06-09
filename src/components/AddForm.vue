@@ -2,7 +2,7 @@
   <div class="add-form">
     <input type="text" name="taskTitle" class="add-form__input" placeholder="Название задачи">
     <textarea name="taskDescription" id="" cols="30" rows="10" class="add-form__input" placeholder="Описание задачи"></textarea>
-    <button type="submit" class="add-form__button" v-on:click="addItem" >Добавить задачу</button>
+    <button type="submit" class="add-form__button"  >Добавить задачу</button>
   </div>
 </template>
 
@@ -19,7 +19,7 @@ export default {
 <style scoped lang="scss">
 .add-form {
   display: flex;
-  padding: 40px;
+  padding: 20px;
   flex-wrap: wrap;
   background: #c0c0c0;
   &__input {
