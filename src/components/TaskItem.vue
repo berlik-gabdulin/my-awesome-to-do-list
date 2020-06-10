@@ -1,23 +1,32 @@
 <template>
-  <div class="task-item__wrapper">
-    <div class="task-item" v-for="task in tasks" :key="task.id">
+  <form class="task-item__wrapper">
+    <div class="task-item" v-for="(task, index) in tasks" :key="index">
       <div class="task-item__checkbox-wrp">
-        <input type="checkbox" class="task-item__checkbox" />
+        <input type="checkbox" class="task-item__checkbox" @click="checkTask(task.id)" />
       </div>
       <div class="task-item__id">{{ task.id }}</div>
       <div class="task-item__title">{{ task.taskTitle }}</div>
       <div class="task-item__description">{{ task.taskDescription }}</div>
     </div>
-  </div>
+    <button type="button" @click="toRemove" :disabled="removeDisabled">Удалить</button>
+  </form>
 </template>
 
 <script>
 export default {
-  props: ["tasks"]
+  props: ["tasks","removeDisabled"],
+  methods: {
+    checkTask(index) {
+      this.$emit("checkTask", index);
+    },
+    toRemove() {
+      this.$emit("toRemove");
+    }
+  }
 };
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 @import "~@/assets/scss/all.scss";
 .task-item {
   box-shadow: $shadow;

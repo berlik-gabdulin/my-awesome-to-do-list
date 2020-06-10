@@ -1,7 +1,7 @@
 <template>
   <div class="add-form">
     <input id="taskTitle" type="text" name="taskTitle" class="add-form__input" placeholder="Название задачи">
-    <textarea id="taskDescription" name="taskDescription" cols="30" rows="10" class="add-form__input" placeholder="Описание задачи"></textarea>
+    <textarea id="taskDescription" name="taskDescription" cols="30" rows="5" class="add-form__input" placeholder="Описание задачи"></textarea>
     <button type="submit" class="add-form__button" v-on:click="addTask" >Добавить задачу</button>
   </div>
 </template>
@@ -16,6 +16,7 @@ export default {
           newTaskDescription = document.getElementById('taskDescription');
         
       if (newTaskTitle.value !== '') {
+
         // console.log(`Task title: ${newTaskTitle.value}, descr: ${newTaskDescription.value}`);
         
         this.$emit('newTask', {
