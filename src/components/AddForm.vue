@@ -1,16 +1,30 @@
 <template>
   <div class="add-form">
-    <input type="text" name="taskTitle" class="add-form__input" placeholder="Название задачи">
-    <textarea name="taskDescription" id="" cols="30" rows="10" class="add-form__input" placeholder="Описание задачи"></textarea>
-    <button type="submit" class="add-form__button"  >Добавить задачу</button>
+    <input id="taskTitle" type="text" name="taskTitle" class="add-form__input" placeholder="Название задачи">
+    <textarea id="taskDescription" name="taskDescription" cols="30" rows="10" class="add-form__input" placeholder="Описание задачи"></textarea>
+    <button type="submit" class="add-form__button" v-on:click="addTask" >Добавить задачу</button>
   </div>
 </template>
 
 <script>
 export default {
   name: "AddForm",
-  props: {
-    // msg: String
+  props: ['tasks'],
+  methods: {
+    addTask() {
+      let newTaskTitle = document.getElementById('taskTitle'),
+          newTaskDescription = document.getElementById('taskDescription');
+        
+      if (newTaskTitle.value !== '') {
+        // console.log(`Task title: ${newTaskTitle.value}, descr: ${newTaskDescription.value}`);
+        
+        this.$emit('newTask', {
+          taskTitle : newTaskTitle.value,
+          taskDescription : newTaskDescription.value
+        })
+        
+      }
+    }
   }
 };
 </script>
