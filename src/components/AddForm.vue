@@ -47,17 +47,5 @@ export default {
     border: 2px solid transparent;
     transition: .15s;
   }
-  &__button {
-    min-height: 40px;
-    padding: 0 30px;
-    border: none;
-    background: #fff;
-    cursor: pointer;
-    transition: .15s;
-    &:hover {
-      background: #000;
-      color: #fff;
-    }
-  }
 }
 </style>

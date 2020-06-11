@@ -4,13 +4,22 @@
       <h1>My Awesome TodoList</h1>
     </header>
     <AddForm :tasks="tasks" @newTask="addTask" id="addTask"></AddForm>
-    <TaskItem :tasks="tasks" :removeDisabled="removeDisabled" @checkTask="checkTask" @toRemove="toRemove" id="taskForm" />
+    <Search :tasks="tasks" @liveSearch="liveSearch" />
+    <!-- <input type="text" placeholder="Что ищем?" v-model="search" id="search" /> -->
+    <TaskItem
+      :tasks="liveSearch"
+      :removeDisabled="removeDisabled"
+      @checkTask="checkTask"
+      @toRemove="toRemove"
+      id="taskForm"
+    />
   </div>
 </template>
 
 <script>
 import AddForm from "./components/AddForm.vue";
 import TaskItem from "./components/TaskItem.vue";
+import Search from "./components/Search.vue";
 
 export default {
   name: "App",
@@ -44,7 +53,8 @@ export default {
       toRemoveArr: [],
       removeDisabled: true,
       lastTaskID: 4,
-      tasksCounter: 4
+      tasksCounter: 4,
+      search: ""
     };
   },
   methods: {
@@ -58,8 +68,8 @@ export default {
         taskDescription: task.taskDescription
       });
       this.lastTaskID++;
-      document.getElementById("taskTitle").value = '';
-      document.getElementById("taskDescription").value = '';
+      document.getElementById("taskTitle").value = "";
+      document.getElementById("taskDescription").value = "";
     },
     checkTask(index) {
       console.log(index);
@@ -92,9 +102,20 @@ export default {
       // console.log("All tasks removed from array ", this.toRemoveArr);
     }
   },
+  computed: {
+    liveSearch() {
+      return this.tasks.filter(task => {
+        return (
+          task.taskTitle.indexOf(this.search) > -1 ||
+          task.taskDescription.indexOf(this.search) > -1
+        );
+      });
+    }
+  },
   components: {
     AddForm,
-    TaskItem
+    TaskItem,
+    Search
   }
 };
 </script>
@@ -112,5 +133,17 @@ body {
   font-family: "Ubuntu", sans-serif;
   font-weight: 400;
   box-shadow: $shadow;
+}
+.button {
+  min-height: 40px;
+  padding: 0 30px;
+  border: none;
+  background: #fff;
+  cursor: pointer;
+  transition: 0.15s;
+  &:hover {
+    background: #000;
+    color: #fff;
+  }
 }
 </style>
