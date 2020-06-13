@@ -1,149 +1,121 @@
 <template>
-  <div id="app">
+  <div id='app'>
     <header>
       <h1>My Awesome TodoList</h1>
     </header>
-    <AddForm :tasks="tasks" @newTask="addTask" id="addTask"></AddForm>
-    <Search :tasks="tasks" @liveSearch="liveSearch" />
-    <!-- <input type="text" placeholder="Что ищем?" v-model="search" id="search" /> -->
-    <TaskItem
-      :tasks="liveSearch"
-      :removeDisabled="removeDisabled"
-      @checkTask="checkTask"
-      @toRemove="toRemove"
-      id="taskForm"
-    />
+    <AddForm id='addTask' />
+    <hr />
+    <Search/>
+    
+    <TaskItem id='taskForm' />
   </div>
 </template>
 
 <script>
-import AddForm from "./components/AddForm.vue";
-import TaskItem from "./components/TaskItem.vue";
-import Search from "./components/Search.vue";
+import AddForm from './components/AddForm.vue'
+import TaskItem from './components/TaskItem.vue'
+import Search from './components/Search.vue'
 
 export default {
-  name: "App",
-  data() {
-    return {
-      tasks: [
-        {
-          id: 1,
-          taskTitle: "Task 1 title",
-          taskDescription: "Lorem ipsum dolor sit amet"
-        },
-        {
-          id: 2,
-          taskTitle: "Task 2 title",
-          taskDescription:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
-        },
-        {
-          id: 3,
-          taskTitle: "Task 3 title",
-          taskDescription:
-            "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
-        },
-        {
-          id: 4,
-          taskTitle: "Task 4 title",
-          taskDescription:
-            "It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."
-        }
-      ],
-      toRemoveArr: [],
-      removeDisabled: true,
-      lastTaskID: 4,
-      tasksCounter: 4,
-      search: ""
-    };
-  },
-  methods: {
-    addTask(task) {
-      // console.log(
-      //   `Task title: ${task.taskTitle}, descr: ${task.taskDescription}`
-      // );
-      this.tasks.push({
-        id: this.lastTaskID + 1,
-        taskTitle: task.taskTitle,
-        taskDescription: task.taskDescription
-      });
-      this.lastTaskID++;
-      document.getElementById("taskTitle").value = "";
-      document.getElementById("taskDescription").value = "";
-    },
-    checkTask(index) {
-      console.log(index);
-      if (this.toRemoveArr.indexOf(index) === -1) {
-        this.toRemoveArr.push(index);
-        // console.log("Added new task to RemoveArray ", this.toRemoveArr);
-      } else {
-        this.toRemoveArr.splice(this.toRemoveArr[index], 1);
-        // console.log("Chosen task removed from RemoveArray ", this.toRemoveArr);
-      }
-
-      console.log();
-
-      if (this.toRemoveArr.length > 0) {
-        this.removeDisabled = false;
-      } else {
-        this.removeDisabled = true;
-      }
-    },
-    toRemove() {
-      this.toRemoveArr.forEach(id => {
-        this.tasks.splice(
-          this.tasks.indexOf(this.tasks.find(task => task.id === id)),
-          1
-        );
-      });
-      this.toRemoveArr = [];
-      document.getElementById("taskForm").reset();
-      this.removeDisabled = true;
-      // console.log("All tasks removed from array ", this.toRemoveArr);
-    }
-  },
-  computed: {
-    liveSearch() {
-      return this.tasks.filter(task => {
-        return (
-          task.taskTitle.indexOf(this.search) > -1 ||
-          task.taskDescription.indexOf(this.search) > -1
-        );
-      });
-    }
-  },
+  name: 'App',
   components: {
     AddForm,
     TaskItem,
     Search
+  },
+  computed: {
+
   }
 };
 </script>
 
-<style lang="scss">
-@import "~@/assets/scss/all.scss";
+<style lang='scss'>
+@import '~@/assets/scss/all.scss';
 body {
-  font-family: "Ubuntu", sans-serif;
+  font-family: 'Ubuntu', sans-serif;
+  background: $main;
+  color: #100e17;
   font-weight: 100;
+  padding: 15px;
+}
+hr {
+  height: 2px;
+  background: $main;
+  border: none;
+  margin: 10px 0px;
 }
 #app {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 15px;
-  font-family: "Ubuntu", sans-serif;
-  font-weight: 400;
-  box-shadow: $shadow;
-}
-.button {
-  min-height: 40px;
-  padding: 0 30px;
-  border: none;
   background: #fff;
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: 400;
+  border: 1px solid $main;
+  border-radius: 15px;
+}
+.btn {
+  display: inline-block;
+  padding: 0 30px;
+  min-height: 40px;
+  margin: 15px 10px 15px 0;
+  box-sizing: border-box;
+  outline: none;
+  border-radius: 5px;
+  border: 3px solid #acacac;
+  background: #acacac;
+  color: #fff;
+  transition: 0.15s;
+  text-transform: uppercase;
+  font-weight: 700;
   cursor: pointer;
   transition: 0.15s;
+  &-primary {
+    border: 3px solid $accent;
+    background: $accent;
+    color: #fff;
+    &:hover {
+      color: $accent !important;
+      background: #fff !important;
+    }
+  }
+  &-danger {
+    border: 3px solid #a00;
+    background: #a00;
+    color: #fff;
+    &:hover {
+      color: #a00 !important;
+      background: #fff !important;
+    }
+  }
+  &-inactive {
+    cursor: default;
+    background: #f6f6f6 !important;
+    color: #615d5c !important;
+    border: 2px solid #615d5c !important;
+  }
+  &-success {
+    background: #4fc08d;
+    color: #fff;
+  }
   &:hover {
     background: #000;
     color: #fff;
+  }
+}
+.input {
+  padding: 10px;
+  width: 100%;
+  height: 40px;
+  margin-bottom: 15px;
+  box-sizing: border-box;
+  outline: none;
+  border: 2px solid $main;
+  border-radius: 5px;
+  transition: 0.15s;
+  &:active,
+  &:focus {
+    border: 2px solid $accent;
   }
 }
 </style>

@@ -1,22 +1,21 @@
 <template>
   <div>
-    <input type="text" placeholder="Что ищем?" v-model="search" id="search" />
-    {{ search }}
+    <input type='text' placeholder='Что ищем?' v-model='search' @input='searchTask' id='search' class='input' />
   </div>
 </template>
 
 <script>
 export default {
-  name: "Search",
-  props: ["tasks"],
+  name: 'Search',
+  props: [],
   data() {
     return {
-      search: ""
+      search: ''
     };
   },
   methods: {
     searchTask() {
-      this.$emit("liveSearch", this.search);
+      return this.$store.commit('searchTask',  this.search);
     }
   }
 };
