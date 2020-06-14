@@ -105,8 +105,7 @@ export default new Vuex.Store({
       });
       promise.then(() => {
         context.commit('isLoaded')
-      }
-      )
+      })
     }
   },
 

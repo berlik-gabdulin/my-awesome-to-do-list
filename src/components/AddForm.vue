@@ -73,4 +73,17 @@ export default {
     resize: none;
   }
 }
+@media screen and (max-width: 768px) {
+  .add-form {
+    display: flex;
+    flex-direction: column;
+    &__title {
+      width: 100%;
+      margin-right: 0;
+    }
+    &__descr {
+      width: 100%;
+    }
+  }
+}
 </style>

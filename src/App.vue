@@ -32,6 +32,7 @@ export default {
 <style lang='scss'>
 @import '~@/assets/scss/all.scss';
 body {
+  margin: 0;
   font-family: 'Ubuntu', sans-serif;
   background: $main;
   color: #100e17;
@@ -116,6 +117,20 @@ hr {
   &:active,
   &:focus {
     border: 2px solid $accent;
+  }
+}
+@media screen and (max-width: 768px) {
+  body {
+    padding: 15px 5px;
+  }
+  #app {
+    padding: 0 5px;
+  }
+  .btn {
+    display: block;
+    width: 100%;
+    max-width: 300px;
+    margin: 15px auto;
   }
 }
 </style>
