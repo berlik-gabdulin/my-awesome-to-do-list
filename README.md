@@ -29,4 +29,5 @@
 
 ## Добавить поле живого поиска по названию и описанию;
 
-Просмотр опубликованной версии [тут](https://berlik-gabdulin.github.io/my-awesome-to-do-list/){:target="_blank"}
+Просмотр опубликованной версии <a href="https://berlik-gabdulin.github.io/my-awesome-to-do-list/" target="_blank">тут</a>
+
