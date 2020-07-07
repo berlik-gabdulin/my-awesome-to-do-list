@@ -29,4 +29,4 @@
 
 ## Добавить поле живого поиска по названию и описанию;
 
-Просмотр опубликованной версии [тут](https://berlik-gabdulin.github.io/my-awesome-to-do-list/)
+Просмотр опубликованной версии [тут](https://berlik-gabdulin.github.io/my-awesome-to-do-list/){:target="_blank"}
